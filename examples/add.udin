@@ -1,0 +1,10 @@
+fun addTwo(a: int, b: int) {
+  ret a + b
+}
+
+fun addThree(a: int, b: int, c: int) {
+  ret a + b + c
+}
+
+putln(addTwo(7, 10))
+putln(addThree(7, 10, 5))
