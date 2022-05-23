@@ -9,3 +9,5 @@ Linux is the only supported system for now.
 Install `nim`, `nimble`, `python3`, and `pip3`.
 
 You need to have `nuitka3`, `python3-devel`, and `gcc` installed to compile code to a binary.
+
+Finally, run `nimble build` to build everything here, and run the generated binary.
