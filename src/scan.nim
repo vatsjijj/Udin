@@ -7,6 +7,7 @@ type
     str,
     newline,
     colon,
+    semicolon,
     comma,
     dot,
     gt, lt,
@@ -46,9 +47,22 @@ var
   tok*: string = ""
   tokenTable*: seq[(Token, string)]
   indentLevel: int = 0
+  line: int = 1
 
 proc atEnd(src: seq[char]): bool =
   if ip == len(src) - 1:
+    return true
+  else:
+    return false
+
+proc lookahead(tbl: seq[(Token, string)], expect: Token, index: int): bool =
+  if tbl[index + 1][0] == expect:
+    return true
+  else:
+    return false
+
+proc lookback(tbl: seq[(Token, string)], expect: Token, index: int): bool =
+  if tbl[index - 1][0] == expect:
     return true
   else:
     return false
@@ -125,6 +139,7 @@ proc symbol(src: seq[char]): (Token, string) =
   of ')': return (Token.rparen, ")")
   of '"': return lexStr(src)
   of ':': return (Token.colon, ":")
+  of ';': return (Token.semicolon, ";")
   of '{': return (Token.lbrace, "{")
   of '}': return (Token.rbrace, "}")
   of '[': return (Token.lbrack, "[")
@@ -185,22 +200,49 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
   var output: string = ""
   for i in 0..len(tbl) - 1:
     case tbl[i][0]
-    of Token.putln: output = output & "print"
-    of Token.fun: output = output & "def "
+    of Token.putln:
+      if lookahead(tbl, Token.lparen, i):
+        output = output & "print"
+      else:
+        error("Expected a parenthese after print statement.")
+    of Token.fun:
+      if lookahead(tbl, Token.atom, i):
+        output = output & "def "
+      else:
+        error("Line " & $line & ": Expected an atom after function definition.")
     of Token.ret: output = output & "return "
     of Token.whle: output = output & "while "
-    of Token.cfor: output = output & "for "
+    of Token.cfor:
+      if lookahead(tbl, Token.atom, i):
+        output = output & "for "
+      else:
+        error("Line " & $line & ": Expected an atom after for keyword.")
     of Token.cin: output = output & " in "
     of Token.class: output = output & "class "
-    of Token.init: output = output & "__init__"
-    of Token.mrepr: output = output & "__repr__"
-    of Token.meq: output = output & "__eq__"
+    of Token.init:
+      if lookahead(tbl, Token.lparen, i):
+        output = output & "__init__"
+      else:
+        error("Line " & $line & ": Expected parenthese after init keyword.")
+    of Token.mrepr:
+      if lookahead(tbl, Token.lparen, i):
+        output = output & "__repr__"
+      else:
+        error("Line " & $line & ": Expected parenthese after repr keyword.")
+    of Token.meq:
+      if lookahead(tbl, Token.lparen, i):
+        output = output & "__eq__"
+      else:
+        error("Line " & $line & ": Expected parenthese after eq keyword.")
     of Token.this: output = output & "self"
     of Token.imprt:
-      if tbl[i - 1][0] == Token.atom:
+      if lookback(tbl, Token.atom, i):
         output = output & " import "
       else:
-        output = output & "import "
+        if lookahead(tbl, Token.atom, i):
+          output = output & "import "
+        else:
+          error("Line " & $line & ": Expected a module name after import statement.")
     of Token.frm: output = output & "from "
     of Token.btrue: output = output & "True"
     of Token.bfalse: output = output & "False"
@@ -217,12 +259,13 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
     of Token.num: output = output & tbl[i][1]
     of Token.str: output = output & "\"" & tbl[i][1] & "\""
     of Token.colon: output = output & ": "
+    of Token.semicolon: output = output & "; "
     of Token.comma: output = output & ", "
     of Token.plus: output = output & " + "
     of Token.minus: output = output & " - "
     of Token.fslash: output = output & " / "
     of Token.star:
-      if tbl[i - 1][0] == Token.imprt:
+      if lookback(tbl, Token.imprt, i):
         output = output & "*"
       else:
         output = output & " * "
@@ -234,11 +277,13 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
     of Token.cnot: output = output & " not "
     of Token.dot: output = output & "."
     of Token.lbrace:
-      output = output & ":"
+      output = output & ": "
       indentLevel = indentLevel + 2
     of Token.rbrace:
       output = output
       indentLevel = indentLevel - 2
-    of Token.newline: output = output & "\n" & repeat(' ', indentLevel)
+    of Token.newline:
+      inc line
+      output = output & "\n" & repeat(' ', indentLevel)
     else: error("'" & tok & "' is not defined or is defined elsewhere")
   return output

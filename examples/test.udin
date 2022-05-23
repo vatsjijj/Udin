@@ -1,32 +1,16 @@
-class Rectangle {
-  fun init(this, width = 0, length = 0) {
-    this.width = width
-    this.length = length
-  }
-
-  fun repr(this) {
-    ret "Rectangle with length " + str(this.length) + " and width " + str(this.width)
-  }
-
-  fun get_area(this, width, length) {
-    ret this.width * this.length
-  }
-
-  fun get_perimeter(this, width, length) {
-    ret (this.width * 2) + (this.length * 2)
+fun shitYourself() {
+  while true {
+    putln("SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF")
   }
 }
 
-rect = Rectangle(7, 10)
-putln("Length: " + str(rect.width))
-putln("Height: " + str(rect.length))
+fun repl() {
+  while true {
+    uin = input(">> ")
+    if uin == "exit" { putln("exit"); quit() }
+    if uin == "ver" { putln("version 0.1.0") }
+    if uin == "OH FUCK" { shitYourself() }
+  }
+}
 
-newRect = Rectangle()
-putln("Length: " + str(newRect.width))
-putln("Height: " + str(newRect.length))
-
-rect.get_area(7, 10)
-rect.get_perimeter(7, 10)
-
-box = Rectangle(4, 3)
-putln(box)
+repl()
