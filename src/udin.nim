@@ -11,12 +11,14 @@
 #      \/__/         \/__/         \/__/         ~~                        \/__/    
 # That's right, UwUdin, you filthy animal.
 
-import std/[sequtils, os, osproc], scan, util
+import std/[sequtils, os, osproc, strutils, strformat], scan, util
 
 var name: string
+var oldLen: int = 0
 
 if paramCount() >= 2:
   name = paramStr(2)
+  name.delete((len(name) - 5)..(len(name) - 1))
 else:
   info("Usage instructions:")
   echo "  udin [t, r, c] <filename> [o] <output name>"
@@ -26,7 +28,7 @@ else:
   echo "  o -> Output.\n"
   error("Expected an argument.")
 
-var input: seq[char] = (readFile(name) & '\0').toSeq
+var input: seq[char] = (readFile(name & ".udin") & '\0').toSeq
 
 scan(input)
 
@@ -36,47 +38,71 @@ if paramCount() >= 2:
       if paramStr(3) == "o":
         writeFile("./" & paramStr(4) & ".py", transpile())
         if len(toTranspile) >= 1:
-          for i in 0..len(toTranspile) - 1:
+          while true:
             ip = 0
-            scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
-            writeFile("./" & toTranspile[i] & ".py", transpile())
+            var newLen = len(toTranspile)
+            if oldLen == newLen:
+              break
+            else:
+              scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
+              writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
+            oldLen = newLen
     else:
-      writeFile("./generated_code.py", transpile())
+      writeFile(fmt"./{name}.py", transpile())
       if len(toTranspile) >= 1:
-        for i in 0..len(toTranspile) - 1:
+        while true:
           ip = 0
-          scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
-          writeFile("./" & toTranspile[i] & ".py", transpile())
+          var newLen = len(toTranspile)
+          if oldLen == newLen:
+            break
+          else:
+            scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
+            writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
+          oldLen = newLen
   if paramStr(1) == "r":
-    writeFile("./tmp.py", transpile())
+    writeFile(fmt"./{name}.py", transpile())
     if len(toTranspile) >= 1:
-      for i in 0..len(toTranspile) - 1:
+      while true:
         ip = 0
-        scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
-        writeFile("./" & toTranspile[i] & ".py", transpile())
-    discard execCmd("python3 ./tmp.py")
+        var newLen = len(toTranspile)
+        if oldLen == newLen:
+          break
+        else:
+          scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
+          writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
+        oldLen = newLen
+    discard execCmd(fmt"python3 ./{name}.py")
     discard execCmd("rm *.py")
   if paramStr(1) == "c":
-    if execCmd("which patchelf") != 0:
-      error("To compile binaries you need patchelf!")
-    if execCmd("which nuitka3") != 0:
-      error("To compile binaries you need Nuitka!")
+    if execCmd("which pyinstaller &> /dev/null") != 0:
+      error("To compile binaries you need Pyinstaller!")
     else:
-      writeFile("./tmp.py", transpile())
+      writeFile(fmt"./{name}.py", transpile())
       if len(toTranspile) >= 1:
-        for i in 0..len(toTranspile) - 1:
+        while true:
           ip = 0
-          scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
-          writeFile("./" & toTranspile[i] & ".py", transpile())
+          var newLen = len(toTranspile)
+          if oldLen == newLen:
+            break
+          else:
+            scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
+            writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
+          oldLen = newLen
       if paramCount() == 4:
         if paramStr(3) == "o":
-          discard execCmd("nuitka3 --follow-imports ./tmp.py -o " & paramStr(4))
+          discard execCmd(fmt"pyinstaller -F {name}.py --clean -n " & paramStr(4))
           discard execCmd("rm *.py")
-          discard execCmd("rm -rf ./tmp.build")
+          discard execCmd("rm -rf ./build")
+          discard execCmd("mv ./dist/* .")
+          discard execCmd("rm -rf ./dist")
+          discard execCmd("rm *.spec")
       else:
-        discard execCmd("nuitka3 --follow-imports ./tmp.py -o app")
+        discard execCmd(fmt"pyinstaller -F {name}.py --clean -n {name}")
         discard execCmd("rm *.py")
-        discard execCmd("rm -rf ./tmp.build")
+        discard execCmd("rm -rf ./build")
+        discard execCmd("mv ./dist/* .")
+        discard execCmd("rm -rf ./dist")
+        discard execCmd("rm *.spec")
 else:
   info("Usage instructions:")
   echo "  udin [t, r, c] <filename> [o] <output name>"

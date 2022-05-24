@@ -27,6 +27,11 @@ Add custom functionality, maybe better pattern matching.
 
 Add actual error handling, it's actually bad right now and I desperately need to fix it.
 
+# Known Issues
+You can't run anything if all the files aren't in the same directory as the command is being run.
+
+No error handling when the source file is the same name as an import. When this happens, you just enter an infinite loop.
+
 # Installation
 Linux is the only supported system for now.
 
