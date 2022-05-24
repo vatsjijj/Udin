@@ -11,6 +11,7 @@ type
     comma,
     dot, dotdot,
     gt, lt,
+    gteq, lteq,
     plus, minus,
     fslash, star, floordiv,
     omod,
@@ -40,6 +41,7 @@ type
     cand,
     cor,
     cnot,
+    noteq,
     ilgl
 
 var
@@ -167,8 +169,18 @@ proc symbol(src: seq[char]): (Token, string) =
       return (Token.equequ, "==")
     else:
       return (Token.equ, "=")
-  of '<': return (Token.lt, "<")
-  of '>': return (Token.gt, ">")
+  of '<':
+    if src[ip + 1] == '=':
+      inc ip
+      return (Token.lteq, "<=")
+    else:
+      return (Token.lt, "<")
+  of '>':
+    if src[ip + 1] == '=':
+      inc ip
+      return (Token.gteq, ">=")
+    else:
+      return (Token.gt, ">")
   of '&':
     if src[ip + 1] == '&':
       inc ip
@@ -181,7 +193,12 @@ proc symbol(src: seq[char]): (Token, string) =
       return (Token.cor, "||")
     else:
       error("Unknown operator '|'")
-  of '!': return (Token.cnot, "!")
+  of '!':
+    if src[ip + 1] == '=':
+      inc ip
+      return (Token.noteq, "!=")
+    else:
+      return (Token.cnot, "!")
   of '.':
     if src[ip + 1] == '.':
       inc ip
@@ -295,6 +312,9 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
     of Token.equequ: output = output & " == "
     of Token.lt: output = output & " < "
     of Token.gt: output = output & " > "
+    of Token.lteq: output = output & " <= "
+    of Token.gteq: output = output & " >= "
+    of Token.noteq: output = output & " != "
     of Token.cnot: output = output & " not "
     of Token.dotdot:
       if lookback(tbl, Token.num, i) and lookahead(tbl, Token.num, i):
