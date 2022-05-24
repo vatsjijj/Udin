@@ -7,9 +7,13 @@ Udin is absolutely not production ready as I quickly assembled the entire langua
 `./udin [t, r, c] <filename> [o] <output name>`
 
 For reference:
+
 `t` -> transpile udin code to py
+
 `r` -> run udin code
+
 `c` -> compile code to a binary
+
 `o` -> output
 
 # Installation
