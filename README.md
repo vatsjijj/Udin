@@ -3,6 +3,15 @@ This is the repository for the Udin programming language.
 
 Udin is absolutely not production ready as I quickly assembled the entire language in a single day, there is no error checking or anything so you kinda have to know how to use the language internally to have a good time with it.
 
+# Usage
+`./udin [t, r, c] <filename> [o] <output name>`
+
+For reference:
+`t` -> transpile udin code to py
+`r` -> run udin code
+`c` -> compile code to a binary
+`o` -> output
+
 # Installation
 Linux is the only supported system for now.
 
