@@ -9,7 +9,7 @@ type
     colon,
     semicolon,
     comma,
-    dot,
+    dot, dotdot,
     gt, lt,
     plus, minus,
     fslash, star, floordiv,
@@ -20,7 +20,7 @@ type
     lbrack, rbrack,
     rarrow,
     fun,
-    putln,
+    put,
     ret,
     imprt,
     frm,
@@ -49,6 +49,7 @@ var
   tokenTable*: seq[(Token, string)]
   indentLevel: int = 0
   line: int = 1
+  lhs, rhs: string
 
 proc atEnd(src: seq[char]): bool =
   if ip == len(src) - 1:
@@ -71,7 +72,7 @@ proc lookback(tbl: seq[(Token, string)], expect: Token, index: int): bool =
 proc keyword(word: string): (Token, string) =
   case word
   of "fun": return (Token.fun, tok)
-  of "putln": return (Token.putln, tok)
+  of "put": return (Token.put, tok)
   of "ret": return (Token.ret, tok)
   of "while": return (Token.whle, tok)
   of "for": return (Token.cfor, tok)
@@ -106,7 +107,7 @@ proc alpha(src: seq[char]): (Token, string) =
 proc digit(src: seq[char]): (Token, string) =
   while isDigit(src[ip]):
     rawTok.add(src[ip])
-    if src[ip + 1] == '.':
+    if src[ip + 1] == '.' and not (src[ip + 2] == '.'):
       inc ip
       rawTok.add(src[ip])
     if not atEnd(src):
@@ -181,7 +182,12 @@ proc symbol(src: seq[char]): (Token, string) =
     else:
       error("Unknown operator '|'")
   of '!': return (Token.cnot, "!")
-  of '.': return (Token.dot, ".")
+  of '.':
+    if src[ip + 1] == '.':
+      inc ip
+      return (Token.dotdot, "..")
+    else:
+      return (Token.dot, ".")
   else: return (Token.ilgl, "ilgl")
 
 proc scan*(src: seq[char]) =
@@ -206,7 +212,7 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
   var output: string = ""
   for i in 0..len(tbl) - 1:
     case tbl[i][0]
-    of Token.putln:
+    of Token.put:
       if lookahead(tbl, Token.lparen, i):
         output = output & "print"
       else:
@@ -242,8 +248,9 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
         error("Line " & $line & ": Expected parenthese after eq keyword.")
     of Token.this: output = output & "self"
     of Token.imprt:
-      if lookback(tbl, Token.atom, i):
-        output = output & " import "
+      if i != 0:
+        if lookback(tbl, Token.atom, i):
+          output = output & " import "
       else:
         if lookahead(tbl, Token.atom, i):
           output = output & "import "
@@ -262,7 +269,13 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
     of Token.lbrack: output = output & "["
     of Token.rbrack: output = output & "]"
     of Token.atom: output = output & tbl[i][1]
-    of Token.num: output = output & tbl[i][1]
+    of Token.num:
+      if lookahead(tbl, Token.dotdot, i):
+        continue
+      if lookback(tbl, Token.dotdot, i):
+        continue
+      else:
+        output = output & tbl[i][1]
     of Token.str: output = output & "\"" & tbl[i][1] & "\""
     of Token.colon: output = output & ": "
     of Token.semicolon: output = output & "; "
@@ -283,6 +296,13 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
     of Token.lt: output = output & " < "
     of Token.gt: output = output & " > "
     of Token.cnot: output = output & " not "
+    of Token.dotdot:
+      if lookback(tbl, Token.num, i) and lookahead(tbl, Token.num, i):
+        lhs = tbl[i - 1][1]
+        rhs = tbl[i + 1][1]
+      else:
+        error("Line " & $line & ": Expected a number.")
+      output = output & "range(" & lhs & ", " & rhs & ")"
     of Token.dot: output = output & "."
     of Token.lbrace:
       output = output & ": "

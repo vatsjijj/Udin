@@ -1,8 +1,8 @@
 number = 10
 
 if number == 10 && number > 5 {
-  putln("number is 10 and greater than 5")
+  put("number is 10 and greater than 5")
 }
 else {
-  putln("number is not 10")
+  put("number is not 10")
 }

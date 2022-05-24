@@ -1,8 +1,8 @@
 apples = 20
 oranges = 15
 
-putln("Number of apples: " + str(apples))
-putln("Number of oranges: " + str(oranges))
+put("Number of apples: " + str(apples))
+put("Number of oranges: " + str(oranges))
 oranges = 0
-putln("Number of apples: " + str(apples))
-putln("Number of oranges: " + str(oranges))
+put("Number of apples: " + str(apples))
+put("Number of oranges: " + str(oranges))

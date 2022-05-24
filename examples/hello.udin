@@ -1,6 +1,6 @@
 fun helloFun() {
-  putln("Hello, world! I'm in a function!")
+  put("Hello, world! I'm in a function!")
 }
 
-putln("Hello, world!")
+put("Hello, world!")
 helloFun()

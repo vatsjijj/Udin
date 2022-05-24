@@ -6,5 +6,5 @@ fun addThree(a: int, b: int, c: int) {
   ret a + b + c
 }
 
-putln(addTwo(7, 10))
-putln(addThree(7, 10, 5))
+put(addTwo(7, 10))
+put(addThree(7, 10, 5))

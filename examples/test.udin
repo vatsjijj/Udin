@@ -1,16 +1,3 @@
-fun shitYourself() {
-  while true {
-    putln("SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF SHIT YOURSELF")
-  }
+for i in 0..9 {
+  put(i)
 }
-
-fun repl() {
-  while true {
-    uin = input(">> ")
-    if uin == "exit" { putln("exit"); quit() }
-    if uin == "ver" { putln("version 0.1.0") }
-    if uin == "OH FUCK" { shitYourself() }
-  }
-}
-
-repl()
