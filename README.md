@@ -3,7 +3,9 @@ This is the repository for the Udin programming language.
 
 Udin is absolutely not production ready as I quickly assembled the entire language in a single day, there is no error checking or anything so you kinda have to know how to use the language internally to have a good time with it.
 
-The current version of Udin is `0.1.5`, a minor release before `0.2.0`.
+The current version of Udin is `0.2.0`, a major release that adds the ability to import Udin files.
+
+Some of these changes could be breaking, so don't be afraid to open up an issue.
 
 # Usage
 `./udin [t, r, c] <filename> [o] <output name>`
@@ -18,39 +20,9 @@ For reference:
 
 `o` -> output
 
-Right now, if you want to import some other Udin source code, you have to transpile the module file first, and then it will be importable.
-
-For example:
-
-```
-# test module, named "test.udin"
-fun sayHello() {
-  put("Hello, world!")
-}
-
-# now in the main file, called "module_test.udin"
-from test import *
-
-sayHello()
-
-# now after you do this, transpile the
-# "test.udin" file into "test.py" with
-# './udin t test.udin o test' and then
-# run "module_test.udin" with
-# './udin r module_test.udin'
-# alternatively you can also compile the
-# "module_test.udin" file and that should work
-# fine too.
-# right now it's very annoying and
-# clunky, so hopefully i can figure
-# something out in the future
-```
-
 Documentation will be written eventually, but for now, check out the example files to learn the language.
 
 # Things to Do
-Properly handle imports on other Udin files.
-
 Add custom functionality, maybe better pattern matching.
 
 Add actual error handling, it's actually bad right now and I desperately need to fix it.

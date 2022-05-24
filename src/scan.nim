@@ -1,4 +1,4 @@
-import std/[strutils], util
+import std/[strutils, osproc], util
 
 type
   Token* = enum
@@ -58,6 +58,7 @@ var
   indentLevel: int = 0
   line: int = 1
   lhs, rhs: string
+  toTranspile*: seq[string]
 
 proc atEnd(src: seq[char]): bool =
   if ip == len(src) - 1:
@@ -289,9 +290,21 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
       else:
         if lookahead(tbl, Token.atom, i):
           output = output & "import "
+          if execCmd("find " & tbl[i + 1][1] & ".udin &> /dev/null") != 0 and not lookahead(tbl, Token.star, i):
+            info("No Udin module named '" & tbl[i + 1][1] & "' found, using Python instead.")
+          else:
+            toTranspile.add(tbl[i + 1][1])
         else:
           error("Line " & $line & ": Expected a module name after import statement.")
-    of Token.frm: output = output & "from "
+    of Token.frm:
+      if lookahead(tbl, Token.atom, i):
+        output = output & "from "
+        if execCmd("find " & tbl[i + 1][1] & ".udin &> /dev/null") != 0:
+            info("No Udin module named '" & tbl[i + 1][1] & "' found, using Python instead.")
+        else:
+          toTranspile.add(tbl[i + 1][1])
+      else:
+        error("Line " & $line & ": Expected an atom after from statement.")
     of Token.btrue: output = output & "True"
     of Token.bfalse: output = output & "False"
     of Token.nothing: output = output & "pass"
@@ -355,4 +368,5 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
       inc line
       output = output & "\n" & repeat(' ', indentLevel)
     else: error("'" & tok & "' is not defined or is defined elsewhere")
+  tokenTable = @[]
   return output

@@ -35,12 +35,27 @@ if paramCount() >= 2:
     if paramCount() == 4:
       if paramStr(3) == "o":
         writeFile("./" & paramStr(4) & ".py", transpile())
+        if len(toTranspile) >= 1:
+          for i in 0..len(toTranspile) - 1:
+            ip = 0
+            scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
+            writeFile("./" & toTranspile[i] & ".py", transpile())
     else:
       writeFile("./generated_code.py", transpile())
+      if len(toTranspile) >= 1:
+        for i in 0..len(toTranspile) - 1:
+          ip = 0
+          scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
+          writeFile("./" & toTranspile[i] & ".py", transpile())
   if paramStr(1) == "r":
     writeFile("./tmp.py", transpile())
+    if len(toTranspile) >= 1:
+      for i in 0..len(toTranspile) - 1:
+        ip = 0
+        scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
+        writeFile("./" & toTranspile[i] & ".py", transpile())
     discard execCmd("python3 ./tmp.py")
-    discard execCmd("rm ./tmp.py")
+    discard execCmd("rm *.py")
   if paramStr(1) == "c":
     if execCmd("which patchelf") != 0:
       error("To compile binaries you need patchelf!")
@@ -48,14 +63,19 @@ if paramCount() >= 2:
       error("To compile binaries you need Nuitka!")
     else:
       writeFile("./tmp.py", transpile())
+      if len(toTranspile) >= 1:
+        for i in 0..len(toTranspile) - 1:
+          ip = 0
+          scan((readFile(toTranspile[i] & ".udin") & '\0').toSeq)
+          writeFile("./" & toTranspile[i] & ".py", transpile())
       if paramCount() == 4:
         if paramStr(3) == "o":
           discard execCmd("nuitka3 --follow-imports ./tmp.py -o " & paramStr(4))
-          discard execCmd("rm ./tmp.py")
+          discard execCmd("rm *.py")
           discard execCmd("rm -rf ./tmp.build")
       else:
         discard execCmd("nuitka3 --follow-imports ./tmp.py -o app")
-        discard execCmd("rm ./tmp.py")
+        discard execCmd("rm *.py")
         discard execCmd("rm -rf ./tmp.build")
 else:
   info("Usage instructions:")
