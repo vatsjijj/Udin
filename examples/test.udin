@@ -1,8 +1,35 @@
-num = 7
+import random
 
-if num != 7 {
-  put("num is not seven")
+class NameHat {
+  fun init(this) {
+    this.names = []
+  }
+
+  fun repr(this) {
+    ret str(this.names)
+  }
+
+  fun insert_name(this, name) {
+    if name in this.names {
+      nothing
+    }
+    else {
+      this.names.append(name)
+    }
+  }
+
+  fun draw_name(this) {
+    result = random.choice(this.names)
+    this.names.remove(result)
+    ret result
+  }
 }
-else {
-  put("num is seven")
-}
+
+hat = NameHat()
+
+hat.insert_name("Bob")
+hat.insert_name("Jane")
+hat.insert_name("John")
+put(hat)
+hat.draw_name()
+put(hat)
