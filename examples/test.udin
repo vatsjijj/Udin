@@ -1,35 +1,9 @@
-import random
+x = 1
 
-class NameHat {
-  fun init(this) {
-    this.names = []
-  }
-
-  fun repr(this) {
-    ret str(this.names)
-  }
-
-  fun insert_name(this, name) {
-    if name in this.names {
-      nothing
-    }
-    else {
-      this.names.append(name)
-    }
-  }
-
-  fun draw_name(this) {
-    result = random.choice(this.names)
-    this.names.remove(result)
-    ret result
-  }
+case x {
+  of 0 { put("zero") }
+  of 1 { put("one") }
+  of 2 { put("two") }
+  of 3 { put("three") }
+  of other { put(other) }
 }
-
-hat = NameHat()
-
-hat.insert_name("Bob")
-hat.insert_name("Jane")
-hat.insert_name("John")
-put(hat)
-hat.draw_name()
-put(hat)
