@@ -302,7 +302,7 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
         rhs = tbl[i + 1][1]
       else:
         error("Line " & $line & ": Expected a number.")
-      output = output & "range(" & lhs & ", " & rhs & ")"
+      output = output & "range(" & lhs & ", " & $(parseInt(rhs) + 1) & ")"
     of Token.dot: output = output & "."
     of Token.lbrace:
       output = output & ": "
