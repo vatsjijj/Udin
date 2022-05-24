@@ -1,2 +1,3 @@
 udin
 *.py
+__pycache__/
