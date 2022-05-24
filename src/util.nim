@@ -11,3 +11,9 @@ proc error*(msg: string) =
     resetStyle, msg
   )
   quit(1)
+
+proc info*(msg: string) =
+  stdout.styledWriteLine(
+    styleBright, fgCyan, "Info: ",
+    resetStyle, msg
+  )
