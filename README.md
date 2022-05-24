@@ -16,6 +16,11 @@ For reference:
 
 `o` -> output
 
+# Things to Do
+Properly handle imports on other Udin files.
+
+Add custom functionality, maybe better pattern matching.
+
 # Installation
 Linux is the only supported system for now.
 

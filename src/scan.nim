@@ -12,7 +12,8 @@ type
     dot,
     gt, lt,
     plus, minus,
-    fslash, star,
+    fslash, star, floordiv,
+    omod,
     equ, equequ,
     lparen, rparen,
     lbrace, rbrace,
@@ -152,8 +153,13 @@ proc symbol(src: seq[char]): (Token, string) =
       return (Token.rarrow, "->")
     else:
       return (Token.minus, "-")
-  of '/': return (Token.fslash, "/")
+  of '/':
+    if src[ip + 1] == '/':
+      return (Token.floordiv, "//")
+    else:
+      return (Token.fslash, "/")
   of '*': return (Token.star, "*")
+  of '%': return (Token.omod, "%")
   of '=':
     if src[ip + 1] == '=':
       inc ip
@@ -204,7 +210,7 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
       if lookahead(tbl, Token.lparen, i):
         output = output & "print"
       else:
-        error("Expected a parenthese after print statement.")
+        error("Line " & $line & ": Expected a parenthese after print statement.")
     of Token.fun:
       if lookahead(tbl, Token.atom, i):
         output = output & "def "
@@ -269,6 +275,8 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
         output = output & "*"
       else:
         output = output & " * "
+    of Token.omod: output = output & " % "
+    of Token.floordiv: output = output & " // "
     of Token.rarrow: output = output & " -> "
     of Token.equ: output = output & " = "
     of Token.equequ: output = output & " == "
