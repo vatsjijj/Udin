@@ -2,7 +2,7 @@
 
 version       = "0.1.2"
 author        = "Jordan"
-description   = "Udin IR."
+description   = "The Udin programming language."
 license       = "MIT"
 srcDir        = "src"
 bin           = @["udin"]
