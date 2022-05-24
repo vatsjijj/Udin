@@ -51,6 +51,8 @@ Properly handle imports on other Udin files.
 
 Add custom functionality, maybe better pattern matching.
 
+Add actual error handling, it's actually bad right now and I desperately need to fix it.
+
 # Installation
 Linux is the only supported system for now.
 
