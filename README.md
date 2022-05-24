@@ -67,4 +67,6 @@ If you want to run the raylib example you need to have raylib installed.
 # Submitting issues
 Please please PLEASE submit the code that you were trying to run when the issue occured, it REALLY helps me when you take the time to do that. An expected result could be helpful to include as well.
 
+Documentation requests are cool too and are appreciated.
+
 Don't be afraid to also submit feature requests. I'm running outta ideas here!
