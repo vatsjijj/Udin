@@ -1,4 +1,4 @@
-from raylib import *
+from raylib import ffi, rl, colors
 
 InitWindow(800, 450, b"Hello, Udin Raylib!")
 SetTargetFPS(60)

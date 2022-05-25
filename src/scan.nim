@@ -441,7 +441,7 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
     of Token.equ:
       if keywords.contains(tbl[i - 1][0]):
         error("Line " & $line & ": '" & tbl[i - 1][1] & "' is a reserved keyword and cannot be assigned to.")
-      elif not lookback(tbl, Token.atom, i) or not lookback(tbl, Token.underscore, i):
+      elif not lookback(tbl, Token.atom, i):
         warn("Line " & $line & ": Cannot assign a value to an object of type '" & $tbl[i - 1][0] & "'. Did you mean '=='?")
         error("Line " & $line & ": '" & tbl[i - 1][1] & "' is of type '" & $tbl[i - 1][0] & "' and cannot be assigned to.")
       else:
@@ -452,7 +452,7 @@ proc transpile*(tbl: seq[(Token, string)] = tokenTable): string =
     of Token.lteq: output = output & " <= "
     of Token.gteq: output = output & " >= "
     of Token.noteq: output = output & " != "
-    of Token.cnot: output = output & " not "
+    of Token.cnot: output = output & "not "
     of Token.dotdot:
       if lookback(tbl, Token.num, i) and lookahead(tbl, Token.num, i):
         lhs = tbl[i - 1][1]
