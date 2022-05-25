@@ -30,9 +30,17 @@ else:
 
 var input: seq[char] = (readFile(name & ".udin") & '\0').toSeq
 
+proc check(name: string) =
+  if execCmd(fmt"mypy {name}.py") != 0:
+    discard execCmd("rm *.py &> /dev/null")
+    discard execCmd("rm -rf build/ &> /dev/null")
+    quit(1)
+
 scan(input)
 
 if paramCount() >= 2:
+  if execCmd("which mypy &> /dev/null") != 0:
+    error("Mypy is needed to run Udin code.")
   if paramStr(1) == "t":
     if paramCount() == 4:
       if paramStr(3) == "o":
@@ -47,6 +55,9 @@ if paramCount() >= 2:
               scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
               writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
             oldLen = newLen
+          for i in 0..len(toTranspile) - 1:
+            check(toTranspile[i] & "_udin")
+        check(name)
     else:
       writeFile(fmt"./{name}.py", transpile())
       if len(toTranspile) >= 1:
@@ -59,6 +70,9 @@ if paramCount() >= 2:
             scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
             writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
           oldLen = newLen
+        for i in 0..len(toTranspile) - 1:
+          check(toTranspile[i] & "_udin")
+      check(name)
   if paramStr(1) == "r":
     writeFile(fmt"./{name}.py", transpile())
     if len(toTranspile) >= 1:
@@ -71,6 +85,9 @@ if paramCount() >= 2:
           scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
           writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
         oldLen = newLen
+      for i in 0..len(toTranspile) - 1:
+        check(toTranspile[i] & "_udin")
+    check(name)
     discard execCmd(fmt"python3 ./{name}.py")
     discard execCmd("rm *.py &> /dev/null")
   if paramStr(1) == "c":
@@ -88,6 +105,9 @@ if paramCount() >= 2:
             scan((readFile(toTranspile[oldLen] & ".udin") & '\0').toSeq)
             writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
           oldLen = newLen
+        for i in 0..len(toTranspile) - 1:
+          check(toTranspile[i] & "_udin")
+      check(name)
       if paramCount() == 4:
         if paramStr(3) == "o":
           discard execCmd(fmt"pyinstaller -F {name}.py --clean -n " & paramStr(4))

@@ -1,7 +1,5 @@
-fun main() {
-  put("Hello, world!")
+fun addTwo(a: Int, b: Int) :: Int {
+  ret a + b
 }
 
-nameMain {
-  main()
-}
+put(addTwo(7, 10))

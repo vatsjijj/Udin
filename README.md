@@ -3,7 +3,9 @@ This is the repository for the Udin programming language.
 
 Udin is absolutely not production ready as I quickly assembled the entire language in a single day, there is no error checking or anything so you kinda have to know how to use the language internally to have a good time with it.
 
-The current version of Udin is `0.2.3`, a minor release that changes pattern matching syntax to encourage the use of functions.
+The current version of Udin is `0.3.0`, a major release that requires static typing.
+
+`0.3.0` breaks pretty much *everything*, and uses `mypy` for type checking. I'd love to implement a custom one in the future though.
 
 Some of these changes could be breaking, so don't be afraid to open up an issue.
 
