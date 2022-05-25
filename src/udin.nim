@@ -72,7 +72,7 @@ if paramCount() >= 2:
           writeFile("./" & toTranspile[oldLen] & "_udin.py", transpile())
         oldLen = newLen
     discard execCmd(fmt"python3 ./{name}.py")
-    discard execCmd("rm *.py")
+    discard execCmd("rm *.py &> /dev/null")
   if paramStr(1) == "c":
     if execCmd("which pyinstaller &> /dev/null") != 0:
       error("To compile binaries you need Pyinstaller!")
@@ -91,18 +91,18 @@ if paramCount() >= 2:
       if paramCount() == 4:
         if paramStr(3) == "o":
           discard execCmd(fmt"pyinstaller -F {name}.py --clean -n " & paramStr(4))
-          discard execCmd("rm *.py")
-          discard execCmd("rm -rf ./build")
-          discard execCmd("mv ./dist/* .")
-          discard execCmd("rm -rf ./dist")
-          discard execCmd("rm *.spec")
+          discard execCmd("rm *.py &> /dev/null")
+          discard execCmd("rm -rf ./build &> /dev/null")
+          discard execCmd("mv ./dist/* . &> /dev/null")
+          discard execCmd("rm -rf ./dist &> /dev/null")
+          discard execCmd("rm *.spec &> /dev/null")
       else:
         discard execCmd(fmt"pyinstaller -F {name}.py --clean -n {name}")
-        discard execCmd("rm *.py")
-        discard execCmd("rm -rf ./build")
-        discard execCmd("mv ./dist/* .")
-        discard execCmd("rm -rf ./dist")
-        discard execCmd("rm *.spec")
+        discard execCmd("rm *.py &> /dev/null")
+        discard execCmd("rm -rf ./build &> /dev/null")
+        discard execCmd("mv ./dist/* . &> /dev/null")
+        discard execCmd("rm -rf ./dist &> /dev/null")
+        discard execCmd("rm *.spec &> /dev/null")
 else:
   info("Usage instructions:")
   echo "  udin [t, r, c] <filename> [o] <output name>"

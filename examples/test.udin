@@ -1,9 +1,7 @@
-x = 1
+fun main() {
+  put("Hello, world!")
+}
 
-case x {
-  of 0 { put("zero") }
-  of 1 { put("one") }
-  of 2 { put("two") }
-  of 3 { put("three") }
-  of other { put(other) }
+nameMain {
+  main()
 }
