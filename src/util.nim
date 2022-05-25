@@ -12,6 +12,12 @@ proc error*(msg: string) =
   )
   quit(1)
 
+proc warn*(msg: string) =
+  stdout.styledWriteLine(
+    styleBright, fgYellow, "Warning: ",
+    resetStyle, msg
+  )
+
 proc info*(msg: string) =
   stdout.styledWriteLine(
     styleBright, fgCyan, "Info: ",

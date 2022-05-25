@@ -3,7 +3,7 @@ This is the repository for the Udin programming language.
 
 Udin is absolutely not production ready as I quickly assembled the entire language in a single day, there is no error checking or anything so you kinda have to know how to use the language internally to have a good time with it.
 
-The current version of Udin is `0.2.2`, a minor release.
+The current version of Udin is `0.2.3`, a minor release that changes pattern matching syntax to encourage the use of functions.
 
 Some of these changes could be breaking, so don't be afraid to open up an issue.
 
