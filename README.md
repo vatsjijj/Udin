@@ -1,5 +1,7 @@
 # Udin
-This is the repository for the Udin programming language.
+Welcome to **Udin5**!
+
+Udin5 transpiles down to Python, so it's pretty damn slow.
 
 Udin is absolutely not production ready as I quickly assembled the entire language in a single day, there is no error checking or anything so you kinda have to know how to use the language internally to have a good time with it.
 
