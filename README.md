@@ -1,35 +1,31 @@
 # Udin
 Welcome to **Udin5**!
 
-Udin5 transpiles down to Python, so it's pretty damn slow.
-
-Udin is absolutely not production ready as I quickly assembled the entire language in a single day, there is no error checking or anything so you kinda have to know how to use the language internally to have a good time with it.
+This is the fifth generation of the Udin programming language.
 
 The current version of Udin is `0.3.1`, a minor release that changes operators.
 
-`0.3.0` breaks pretty much *everything*, and uses `mypy` for type checking. I'd love to implement a custom one in the future though.
-
-Some of these changes could be breaking, so don't be afraid to open up an issue.
+The `0.3.0` revision breaks pretty much *everything* from pre `0.3.0` and uses `mypy` for type checking. I'd love to implement a custom one in the future though.
 
 # Usage
-`./udin [t, r, c] <filename> [o] <output name>`
+`./udin [g, r, c] <filename> [o] <output name>`
 
 For reference:
 
-`t` -> transpile udin code to py
+`g` -> output generated py
 
 `r` -> run udin code
 
 `c` -> compile code to a binary
 
-`o` -> output
+`o` -> output file
 
 Documentation will be written eventually, but for now, check out the example files to learn the language.
 
 # Things to Do
-Add custom functionality, maybe better pattern matching.
+Add __*more*__ custom functionality.
 
-Add actual error handling, it's actually bad right now and I desperately need to fix it.
+Add actual error handling, it's actually bad right now and I need to fix it.
 
 # Known Issues
 You can't run anything if all the files aren't in the same directory as the command is being run.
@@ -50,4 +46,4 @@ Please please PLEASE submit the code that you were trying to run when the issue 
 
 Documentation requests are cool too and are appreciated.
 
-Don't be afraid to also submit feature requests. I'm running outta ideas here!
+Don't be afraid to also submit feature requests.

@@ -1,15 +1,14 @@
-#       ___           ___           ___           ___                       ___     
-#      /\__\         /\__\         /\__\         /\  \          ___        /\__\    
-#     /:/  /        /:/ _/_       /:/  /        /::\  \        /\  \      /::|  |   
-#    /:/  /        /:/ /\__\     /:/  /        /:/\:\  \       \:\  \    /:|:|  |   
-#   /:/  /  ___   /:/ /:/ _/_   /:/  /  ___   /:/  \:\__\      /::\__\  /:/|:|  |__ 
-#  /:/__/  /\__\ /:/_/:/ /\__\ /:/__/  /\__\ /:/__/ \:|__|  __/:/\/__/ /:/ |:| /\__\
-#  \:\  \ /:/  / \:\/:/ /:/  / \:\  \ /:/  / \:\  \ /:/  / /\/:/  /    \/__|:|/:/  /
-#   \:\  /:/  /   \::/_/:/  /   \:\  /:/  /   \:\  /:/  /  \::/__/         |:/:/  / 
-#    \:\/:/  /     \:\/:/  /     \:\/:/  /     \:\/:/  /    \:\__\         |::/  /  
-#     \::/  /       \::/  /       \::/  /       \::/__/      \/__/         /:/  /   
-#      \/__/         \/__/         \/__/         ~~                        \/__/    
-# That's right, UwUdin, you filthy animal.
+#      ___           ___                       ___     
+#     /\__\         /\  \          ___        /\__\    
+#    /:/  /        /::\  \        /\  \      /::|  |   
+#   /:/  /        /:/\:\  \       \:\  \    /:|:|  |   
+#  /:/  /  ___   /:/  \:\__\      /::\__\  /:/|:|  |__ 
+# /:/__/  /\__\ /:/__/ \:|__|  __/:/\/__/ /:/ |:| /\__\
+# \:\  \ /:/  / \:\  \ /:/  / /\/:/  /    \/__|:|/:/  /
+#  \:\  /:/  /   \:\  /:/  /  \::/__/         |:/:/  / 
+#   \:\/:/  /     \:\/:/  /    \:\__\         |::/  /  
+#    \::/  /       \::/__/      \/__/         /:/  /   
+#     \/__/         ~~                        \/__/    
 
 import std/[sequtils, os, osproc, strutils, strformat], scan, util
 
@@ -21,8 +20,8 @@ if paramCount() >= 2:
   name.delete((len(name) - 5)..(len(name) - 1))
 else:
   info("Usage instructions:")
-  echo "  udin [t, r, c] <filename> [o] <output name>"
-  echo "  t -> Transpile Udin source to Python."
+  echo "  udin [g, r, c] <filename> [o] <output name>"
+  echo "  g -> Output generated Python."
   echo "  r -> Run Udin source."
   echo "  c -> Compile Udin source."
   echo "  o -> Output.\n"
@@ -41,7 +40,7 @@ scan(input)
 if paramCount() >= 2:
   if execCmd("which mypy &> /dev/null") != 0:
     error("Mypy is needed to run Udin code.")
-  if paramStr(1) == "t":
+  if paramStr(1) == "g":
     if paramCount() == 4:
       if paramStr(3) == "o":
         writeFile("./" & paramStr(4) & ".py", transpile())
@@ -125,8 +124,8 @@ if paramCount() >= 2:
         discard execCmd("rm *.spec &> /dev/null")
 else:
   info("Usage instructions:")
-  echo "  udin [t, r, c] <filename> [o] <output name>"
-  echo "  t -> Transpile Udin source to Python."
+  echo "  udin [g, r, c] <filename> [o] <output name>"
+  echo "  g -> Output generated Python."
   echo "  r -> Run Udin source."
   echo "  c -> Compile Udin source."
   echo "  o -> Output.\n"
