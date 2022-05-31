@@ -166,7 +166,7 @@ proc keyword(word: string): (Token, string) =
   of "break": return (Token.brk, tok)
   of "nameMain": return (Token.inmain, tok)
   of "isInstance": return (Token.isinstance, tok)
-  of "Str": return (Token.pstring, tok)
+  of "String": return (Token.pstring, tok)
   of "Int": return (Token.pinteger, tok)
   of "Float": return (Token.pfloat, tok)
   of "Bool": return (Token.pboolean, tok)
