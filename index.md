@@ -1,7 +1,7 @@
 ## Udin5
 The Udin5 programming language is a language that compiles down to Python, for easy use with other Python libraries and such.
 
-The current version is 0.3.2.
+The current version is 0.3.3.
 
 ## Supported Systems
 Linux only for now.
