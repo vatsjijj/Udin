@@ -1,37 +1,60 @@
-## Welcome to GitHub Pages
+## Udin5
+The Udin5 programming language is a language that compiles down to Python, for easy use with other Python libraries and such.
 
-You can use the [editor on GitHub](https://github.com/vatsjijj/Udin/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+The current version is 0.3.2.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Supported Systems
+Linux only for now.
 
-### Markdown
+## Code Samples
+Hello World:
+```
+fun helloFun() {
+  put("Hello, world! I'm in a function!")
+}
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+put("Hello, world!")
+helloFun()
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Fib:
+```
+enableMemo
 
-### Jekyll Themes
+@cache
+fun fib(n: Int) :: Int {
+  if n <= 1 {
+    ret n
+  }
+  ret fib(n - 1) + fib(n - 2)
+}
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/vatsjijj/Udin/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+fun main() :: None {
+  for i in 0..399 {
+    put(i, fib(i))
+  }
+  put("Done")
+}
 
-### Support or Contact
+nameMain {
+  main()
+}
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Adding Numbers:
+```
+fun addTwo(a: Int, b: Int) :: Int {
+  ret a + b
+}
+
+fun addThree(a: Int, b: Int, c: Int) :: Int {
+  ret a + b + c
+}
+
+x: Int = 7
+y: Int = 10
+z: Int = 9
+
+put(addTwo(x, y))
+put(addThree(x, y, z))
+```
