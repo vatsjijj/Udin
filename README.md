@@ -3,7 +3,7 @@ Welcome to **Udin5**!
 
 This is the fifth generation of the Udin programming language.
 
-The current version of Udin is `0.3.1`, a minor release that changes operators.
+The current version of Udin is `0.3.2`, a minor release that adds decorators.
 
 The `0.3.0` revision breaks pretty much *everything* from pre `0.3.0` and uses `mypy` for type checking. I'd love to implement a custom one in the future though.
 
