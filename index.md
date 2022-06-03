@@ -1,6 +1,8 @@
 ## Udin5
 The Udin5 programming language is a language that compiles down to Python, for easy use with other Python libraries and such.
 
+Udin's syntax is inspired by Kotlin, Rust, Nim, and a *little bit* of Python.
+
 The current version is 0.3.3.
 
 ## Supported Systems
