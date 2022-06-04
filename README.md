@@ -37,7 +37,7 @@ macOS is not officially supported.
 
 Install `nim`, `nimble`, `python3`, `mypy`, and `pip3`.
 
-You need to have `pyinstaller`, `python3-devel`, and `gcc` (in the case of Windows, you just need `python3` and `mingw`) installed to compile code to a binary.
+You need to have `pyinstaller`, `python3-devel`, and `gcc` (in the case of Windows, you just need `pyinstaller` and `mingw`) installed to compile code to a binary.
 
 Finally, run `nimble build` to build everything here, and run the generated binary.
 
