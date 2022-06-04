@@ -42,7 +42,7 @@ You need to have `pyinstaller`, `python3-devel`, and `gcc` (in the case of Windo
 Finally, run `nimble build` to build everything here, and run the generated binary.
 
 # Submitting issues
-Please please PLEASE submit the code that you were trying to run when the issue occured, it REALLY helps me when you take the time to do that. An expected result could be helpful to include as well.
+Please please PLEASE submit the code that you were trying to run when the issue occurred, it REALLY helps me when you take the time to do that. An expected result could be helpful to include as well.
 
 Documentation requests are cool too and are appreciated.
 
