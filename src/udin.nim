@@ -159,8 +159,6 @@ if paramCount() >= 2:
           for i in 0..len(toDel) - 1:
             removeFile(toDel[i] & "_udin.py")
           removeDir("build")
-          moveFile("dist\\" & name & ".exe", ".")
-          removeDir("dist")
           removeFile(name & ".spec")
 else:
   info("Usage instructions:")
