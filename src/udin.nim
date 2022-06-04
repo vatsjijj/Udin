@@ -16,7 +16,10 @@ var name: string
 var oldLen: int = 0
 
 if paramCount() >= 2:
-  name = paramStr(2)
+  if detectOs(Linux):
+    name = paramStr(2)
+  elif detectOs(Windows):
+    name = commandLineParams()[1]
   name.delete((len(name) - 5)..(len(name) - 1))
 else:
   info("Usage instructions:")
@@ -48,9 +51,9 @@ if paramCount() >= 2:
     error("Mypy is needed to run Udin code.")
   elif detectOs(Windows) and execCmd("where /Q mypy") != 0:
     error("Mypy is needed to run Udin code.")
-  if paramStr(1) == "g":
+  if paramStr(1) == "g" or commandLineParams()[0] == "g":
     if paramCount() == 4:
-      if paramStr(3) == "o":
+      if paramStr(3) == "o" or commandLineParams()[2] == "o":
         writeFile(paramStr(4) & ".py", compile())
         if len(toCompile) >= 1:
           while true:
@@ -80,7 +83,7 @@ if paramCount() >= 2:
         for i in 0..len(toCompile) - 1:
           check(toCompile[i] & "_udin")
       check(name)
-  if paramStr(1) == "r":
+  if paramStr(1) == "r" or commandLineParams()[0] == "r":
     writeFile(fmt"{name}.py", compile())
     if len(toCompile) >= 1:
       while true:
@@ -105,7 +108,7 @@ if paramCount() >= 2:
       removeFile(name & ".py")
       for i in 0..len(toDel) - 1:
         removeFile(toDel[i] & "_udin.py")
-  if paramStr(1) == "c":
+  if paramStr(1) == "c" or commandLineParams()[0] == "c":
     if detectOs(Linux) and execCmd("which pyinstaller &> /dev/null") != 0:
       error("To compile binaries you need Pyinstaller!")
     elif detectOs(Windows) and execCmd("where /Q pyinstaller") != 0:
@@ -126,15 +129,16 @@ if paramCount() >= 2:
           check(toCompile[i] & "_udin")
       check(name)
       if paramCount() == 4:
-        if paramStr(3) == "o":
-          discard execCmd(fmt"pyinstaller -F {name}.py --clean -n " & paramStr(4))
+        if paramStr(3) == "o" or commandLineParams()[2] == "o":
           if detectOs(Linux):
+            discard execCmd(fmt"pyinstaller -F {name}.py --clean -n " & paramStr(4))
             discard execCmd("rm *.py &> /dev/null")
             discard execCmd("rm -rf ./build &> /dev/null")
             discard execCmd("mv ./dist/* . &> /dev/null")
             discard execCmd("rm -rf ./dist &> /dev/null")
             discard execCmd("rm *.spec &> /dev/null")
           elif detectOs(Windows):
+            discard execCmd(fmt"pyinstaller -F {name}.py --clean -n " & commandLineParams()[3])
             removeFile(name & ".py")
             for i in 0..len(toDel) - 1:
               removeFile(toDel[i] & "_udin.py")
