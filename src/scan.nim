@@ -542,7 +542,7 @@ proc compile*(tbl: seq[(Token, string)] = tokenTable): string =
           lhs = "\"" & tbl[i - 1][1] & "\""
         else:
           lhs = tbl[i - 1][1]
-        if types.contains(tbl[i + 1][0]) or tbl[i + 1][0] == Token.lbrace:
+        if types.contains(tbl[i + 1][0]) or tbl[i + 1][0] == Token.lbrace or tbl[i + 1][0] == Token.ret:
           if lookahead(tbl, Token.str, i):
             rhs = " \"" & tbl[i + 1][1] & "\""
           else:
