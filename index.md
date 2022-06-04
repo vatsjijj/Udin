@@ -3,10 +3,14 @@ The Udin5 programming language is a language that compiles down to Python, for e
 
 Udin's syntax is inspired by Kotlin, Rust, Nim, and a *little bit* of Python.
 
-The current version is 0.3.3.
+The current version is 0.4.0.
 
 ## Supported Systems
-Linux only for now.
+Linux and Windows.
+
+Windows support is highly experimental and may constantly break, proceed with caution.
+
+Linux binaries are built and tested on Fedora 36, and Windows binaries are built and tested on Windows 10.
 
 ## Code Samples
 Hello World:
