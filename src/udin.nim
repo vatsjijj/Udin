@@ -15,8 +15,6 @@ import std/[sequtils, os, osproc, strutils, strformat, distros], scan, util
 var name: string
 var oldLen: int = 0
 
-echo commandLineParams()
-
 if paramCount() >= 2:
   if detectOs(Linux):
     name = paramStr(2)
@@ -103,7 +101,7 @@ if paramCount() >= 2:
     if detectOs(Linux):
       discard execCmd(fmt"python3 {name}.py")
     elif detectOs(Windows):
-      discard execCmd(fmt"{name}.py")
+      discard execCmd(fmt"py {name}.py")
     if detectOs(Linux):
       discard execCmd("rm *.py &> /dev/null")
     elif detectOs(Windows):
