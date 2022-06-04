@@ -80,3 +80,40 @@ loop {
   put(m(uin))
 }
 ```
+
+Quicksort:
+```
+fun qs(arr: List) :: List {
+  less: List = []
+  pivotList: List = []
+  more: List = []
+  if len(arr) <= 1 {
+    ret arr
+  }
+  else {
+    pivot = arr[0]
+    for i in arr {
+      if i < pivot {
+        less.append(i)
+      }
+      elif i > pivot {
+        more.append(i)
+      }
+      else {
+        pivotList.append(i)
+      }
+    }
+    less = qs(less)
+    more = qs(more)
+    ret less + pivotList + more
+  }
+}
+
+a = [ 4, 65, 2,
+      -31, 0, 99,
+      83, 782, 1 ]
+
+a = qs(a)
+
+put(a)
+```
