@@ -3,7 +3,7 @@ The Udin5 programming language is a language that compiles down to Python, for e
 
 Udin's syntax is inspired by Kotlin, Rust, Nim, and a *little bit* of Python.
 
-The current version is 0.4.1.
+The current version is 0.4.2.
 
 ## Supported Systems
 Linux and Windows.
@@ -15,7 +15,7 @@ Linux binaries are built and tested on Fedora 36, and Windows binaries are built
 ## Code Samples
 Hello World:
 ```
-fun helloFun() {
+fun helloFun() :: None {
   put("Hello, world! I'm in a function!")
 }
 
@@ -69,9 +69,9 @@ Matching and Loops:
 ```
 fun m(arg: Int) :: String {
   match arg {
-    0 -> "zero"
-    1 -> "one"
-    _ -> "none"
+    0 -> ret "zero"
+    1 -> ret "one"
+    _ -> ret "none"
   }
 }
 
@@ -116,4 +116,78 @@ a = [ 4, 65, 2,
 a = qs(a)
 
 put(a)
+```
+
+Calculator:
+```
+fun addt() :: Int {
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a + b
+}
+
+fun sub() :: Int {
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a - b
+}
+
+fun mul() :: Int {
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a * b
+}
+
+fun div() :: Float {
+  a: Float = Float(input("[a]> "))
+  b: Float = Float(input("[b]> "))
+  ret a / b
+}
+
+fun fdiv() :: Int {
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a // b
+}
+
+fun mod() :: Int {
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a % b
+}
+
+fun main() :: None {
+  put("Availible operators:")
+  put("add")
+  put("sub")
+  put("mul")
+  put("div")
+  put("fdiv")
+  put("mod")
+  loop {
+    uin: String = input("> ")
+    match uin {
+      "add" -> put(addt())
+      "sub" -> put(sub())
+      "mul" -> put(mul())
+      "div" -> put(div())
+      "fdiv" -> put(fdiv())
+      "mod" -> put(mod())
+      "ops" -> {
+        put("Availible operators:")
+        put("add")
+        put("sub")
+        put("mul")
+        put("div")
+        put("fdiv")
+        put("mod")
+      }
+      _ -> put("Error: Not allowed.")
+    }
+  }
+}
+
+nameMain {
+  main()
+}
 ```
