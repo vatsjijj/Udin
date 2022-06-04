@@ -15,6 +15,9 @@ import std/[sequtils, os, osproc, strutils, strformat, distros], scan, util
 var name: string
 var oldLen: int = 0
 
+if not detectOs(Linux) and not detectOs(Windows):
+  error("Your operating system is unsupported.")
+
 if paramCount() >= 2:
   if detectOs(Linux):
     name = paramStr(2)

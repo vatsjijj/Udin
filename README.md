@@ -3,9 +3,9 @@ Welcome to **Udin5**!
 
 This is the fifth generation of the Udin programming language.
 
-The current version of Udin is `0.4.0`, a major release that adds compatibility with Windows.
+The current version of Udin is `0.4.1`, a minor release that adds multiline parens and lists.
 
-**WARNING: 0.4.0 IS HIGHLY EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
+**WARNING: THE 0.4.0 SERIES IS HIGHLY EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
 # Usage
 `./udin [g, r, c] <filename> [o] <output name>`
@@ -33,7 +33,7 @@ You can't run anything if all the files aren't in the same directory as the comm
 No error handling when the source file is the same name as an import. When this happens, you just enter an infinite loop.
 
 # Installation
-Linux is the only supported system for now.
+macOS is not officially supported.
 
 Install `nim`, `nimble`, `python3`, `mypy`, and `pip3`.
 
