@@ -83,9 +83,9 @@ if paramCount() >= 2:
             scan((readFile(toCompile[oldLen] & ".udin") & '\0').toSeq)
             writeFile(toCompile[oldLen] & "_udin.py", compile())
           oldLen = newLen
-        for i in 0..len(toCompile) - 1:
-          check(toCompile[i] & "_udin")
-      check(name)
+        #for i in 0..len(toCompile) - 1:
+        #  check(toCompile[i] & "_udin")
+      #check(name)
   if paramStr(1) == "r" or commandLineParams()[0] == "r":
     writeFile(fmt"{name}.py", compile())
     if len(toCompile) >= 1:
