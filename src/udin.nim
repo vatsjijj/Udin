@@ -15,6 +15,8 @@ import std/[sequtils, os, osproc, strutils, strformat, distros], scan, util
 var name: string
 var oldLen: int = 0
 
+echo commandLineParams()
+
 if paramCount() >= 2:
   if detectOs(Linux):
     name = paramStr(2)
