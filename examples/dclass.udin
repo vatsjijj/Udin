@@ -1,0 +1,10 @@
+dataclass Employee {
+  name: String
+  id: String
+  age: Int
+  city: String
+}
+
+employeeOne = Employee("Bob", "bobd867", 27, "Columbus")
+
+put(employeeOne)
