@@ -143,7 +143,7 @@ if paramCount() >= 2:
             for i in 0..len(toDel) - 1:
               removeFile(toDel[i] & "_udin.py")
             removeDir("build")
-            moveFile("dist\\" & name & ".exe", ".")
+            moveFile("dist\\" & commandLineParams()[3] & ".exe", ".")
             removeDir("dist")
             removeFile(name & ".spec")
       else:
@@ -159,7 +159,7 @@ if paramCount() >= 2:
           for i in 0..len(toDel) - 1:
             removeFile(toDel[i] & "_udin.py")
           removeDir("build")
-          moveFile("dist\\" & name, ".")
+          moveFile("dist\\" & name & ".exe", ".")
           removeDir("dist")
           removeFile(name & ".spec")
 else:
