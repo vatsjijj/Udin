@@ -3,7 +3,7 @@ The Udin5 programming language is a language that compiles down to Python, for e
 
 Udin's syntax is inspired by Kotlin, Rust, Nim, and a *little bit* of Python.
 
-The current version is 0.4.0.
+The current version is 0.4.1.
 
 ## Supported Systems
 Linux and Windows.
@@ -63,4 +63,20 @@ z: Int = 9
 
 put(addTwo(x, y))
 put(addThree(x, y, z))
+```
+
+Matching and Loops:
+```
+fun m(arg: Int) :: String {
+  match arg {
+    0 -> "zero"
+    1 -> "one"
+    _ -> "none"
+  }
+}
+
+loop {
+  uin: Int = Int(input("> "))
+  put(m(uin))
+}
 ```
