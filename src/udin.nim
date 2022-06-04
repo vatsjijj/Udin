@@ -95,7 +95,10 @@ if paramCount() >= 2:
       for i in 0..len(toCompile) - 1:
         check(toCompile[i] & "_udin")
     check(name)
-    discard execCmd(fmt"python3 {name}.py")
+    if detectOs(Linux):
+      discard execCmd(fmt"python3 {name}.py")
+    elif detectOs(Windows):
+      discard execCmd(fmt"{name}.py")
     if detectOs(Linux):
       discard execCmd("rm *.py &> /dev/null")
     elif detectOs(Windows):
