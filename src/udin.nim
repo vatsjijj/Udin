@@ -14,6 +14,7 @@ import std/[sequtils, os, osproc, strutils, strformat, distros], scan, util
 
 var name: string
 var oldLen: int = 0
+var fullLst: string
 
 if not detectOs(Linux) and not detectOs(Windows):
   error("Your operating system is unsupported.")
@@ -36,7 +37,7 @@ else:
 var input: seq[char] = (readFile(name & ".udin") & '\0').toSeq
 
 proc check(name: string) =
-  if execCmd(fmt"mypy {name}.py") != 0:
+  if execCmd(fmt"mypy {name}") != 0:
     if detectOs(Linux):
       discard execCmd("rm *.py &> /dev/null")
       discard execCmd("rm -rf build/ &> /dev/null")
@@ -67,10 +68,11 @@ if paramCount() >= 2:
             else:
               scan((readFile(toCompile[oldLen] & ".udin") & '\0').toSeq)
               writeFile(toCompile[oldLen] & "_udin.py", compile())
-            oldLen = newLen
-          for i in 0..len(toCompile) - 1:
-            check(toCompile[i] & "_udin")
-        check(name)
+            inc oldLen
+        for i in 0..len(toCompile) - 1:
+          fullLst = fullLst & toCompile[i] & "_udin.py "
+        fullLst = fullLst & name & ".py"
+        check(fullLst)
     else:
       writeFile(fmt"{name}.py", compile())
       if len(toCompile) >= 1:
@@ -82,10 +84,11 @@ if paramCount() >= 2:
           else:
             scan((readFile(toCompile[oldLen] & ".udin") & '\0').toSeq)
             writeFile(toCompile[oldLen] & "_udin.py", compile())
-          oldLen = newLen
-        #for i in 0..len(toCompile) - 1:
-        #  check(toCompile[i] & "_udin")
-      #check(name)
+          inc oldLen
+      for i in 0..len(toCompile) - 1:
+        fullLst = fullLst & toCompile[i] & "_udin.py "
+      fullLst = fullLst & name & ".py"
+      check(fullLst)
   if paramStr(1) == "r" or commandLineParams()[0] == "r":
     writeFile(fmt"{name}.py", compile())
     if len(toCompile) >= 1:
@@ -97,10 +100,11 @@ if paramCount() >= 2:
         else:
           scan((readFile(toCompile[oldLen] & ".udin") & '\0').toSeq)
           writeFile(toCompile[oldLen] & "_udin.py", compile())
-        oldLen = newLen
-      for i in 0..len(toCompile) - 1:
-        check(toCompile[i] & "_udin")
-    check(name)
+        inc oldLen
+    for i in 0..len(toCompile) - 1:
+      fullLst = fullLst & toCompile[i] & "_udin.py "
+    fullLst = fullLst & name & ".py"
+    check(fullLst)
     if detectOs(Linux):
       discard execCmd(fmt"python3 {name}.py")
     elif detectOs(Windows):
@@ -127,10 +131,13 @@ if paramCount() >= 2:
           else:
             scan((readFile(toCompile[oldLen] & ".udin") & '\0').toSeq)
             writeFile(toCompile[oldLen] & "_udin.py", compile())
-          oldLen = newLen
-        for i in 0..len(toCompile) - 1:
-          check(toCompile[i] & "_udin")
-      check(name)
+          inc oldLen
+      if len(toCompile) == 1:
+        fullLst = toCompile[0] & "_udin.py"
+      else:
+        fullLst = toCompile.join("_udin.py ")
+      fullLst = [fullLst, name & ".py"].join(" ")
+      check(fullLst)
       if paramCount() == 4:
         if paramStr(3) == "o" or commandLineParams()[2] == "o":
           if detectOs(Linux):

@@ -3,7 +3,7 @@ Welcome to **Udin5**!
 
 This is the fifth generation of the Udin programming language.
 
-The current version of Udin is `0.4.3`, a minor release that adds dataclasses.
+The current version of Udin is `0.4.4`, a minor release that fixes a major oversight of mine.
 
 **WARNING: THE 0.4.0 SERIES IS HIGHLY EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
