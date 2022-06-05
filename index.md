@@ -14,7 +14,7 @@ Linux binaries are built and tested on Fedora 36, and Windows binaries are built
 
 ## Code Samples
 Hello World:
-```
+```kotlin
 fun helloFun() :: None {
   put("Hello, world! I'm in a function!")
 }
@@ -24,7 +24,7 @@ helloFun()
 ```
 
 Fib (w/ memoization):
-```
+```kotlin
 @memoize
 fun fib(n: Int) :: Int {
   if n <= 1 {
@@ -46,7 +46,7 @@ nameMain {
 ```
 
 Adding Numbers:
-```
+```kotlin
 fun addTwo(a: Int, b: Int) :: Int {
   ret a + b
 }
@@ -64,7 +64,7 @@ put(addThree(x, y, z))
 ```
 
 Matching and Loops:
-```
+```kotlin
 fun m(arg: Int) :: String {
   match arg {
     0 -> ret "zero"
@@ -80,7 +80,7 @@ loop {
 ```
 
 Quicksort:
-```
+```kotlin
 fun qs(arr: List) :: List {
   less: List = []
   pivotList: List = []
@@ -117,7 +117,7 @@ put(a)
 ```
 
 Calculator:
-```
+```kotlin
 fun addt() :: Int {
   a: Int = Int(input("[a]> "))
   b: Int = Int(input("[b]> "))
@@ -191,7 +191,7 @@ nameMain {
 ```
 
 Dataclass:
-```
+```kotlin
 dataclass Employee {
   name: String
   id: String
