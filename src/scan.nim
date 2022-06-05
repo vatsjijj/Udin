@@ -193,7 +193,7 @@ proc keyword(word: string): (Token, string) =
   of "None": return (Token.none, tok)
   of "Any": return (Token.pany, tok)
   of "ignoreType": return (Token.ignoretype, tok)
-  of "memo":
+  of "memoize":
     isMemo = true
     return (Token.enablememo, tok)
   of "dataclass":
