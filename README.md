@@ -1,9 +1,9 @@
 # Udin
-Welcome to **Udin5**!
+Welcome to **Udin**!
 
-This is the fifth generation of the Udin programming language.
+Udin used to be called Udin5, since this is the fifth iteration of the language. Now, it is just called Udin.
 
-The current version of Udin is `0.4.4`, a minor release that fixes a major oversight of mine.
+The current version of Udin is `0.4.5`, a minor release that fixes a major bug with imports and makes the string error less frustrating and vague.
 
 **WARNING: THE 0.4.0 SERIES IS HIGHLY EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
@@ -25,12 +25,10 @@ Documentation will be written eventually, but for now, check out the example fil
 # Things to Do
 Add __*more*__ custom functionality.
 
-Add actual error handling, it's actually bad right now and I need to fix it.
+Add better error handling.
 
 # Known Issues
-You can't run anything if all the files aren't in the same directory as the command is being run.
-
-No error handling when the source file is the same name as an import. When this happens, you just enter an infinite loop.
+- You can't run anything if all the files aren't in the same directory as the command is being run.
 
 # Installation
 macOS is not officially supported.
