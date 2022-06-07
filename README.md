@@ -5,7 +5,7 @@ Udin used to be called Udin5, since this is the fifth iteration of the language.
 
 The current version of Udin is `0.5.0`, a major release that removes static typing.
 
-**WARNING: THE 0.4.0 SERIES IS HIGHLY EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
+**WARNING: THE 0.5.0 SERIES IS HIGHLY EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
 # Usage
 `./udin [g, r, c] <filename> [o] <output name>`
