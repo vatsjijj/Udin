@@ -1,7 +1,7 @@
 # Udin
 Welcome to **Udin**!
 
-The current version of Udin is `0.5.1`, a minor release that adds the global keyword and increment/decrement operators.
+The current version of Udin is `0.5.2`, a minor release that allows the use of the double dot operator in lists.
 
 **WARNING: THE 0.5.0 SERIES IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
