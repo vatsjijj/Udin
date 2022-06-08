@@ -218,6 +218,9 @@ proc alpha(src: seq[char]): (Token, string) =
     if src[ip + 1] == '_':
       inc ip
       rawTok.add(src[ip])
+    elif isDigit(src[ip + 1]):
+      inc ip
+      rawTok.add(src[ip])
     if not atEnd(src):
       inc ip
     if atEnd(src):
