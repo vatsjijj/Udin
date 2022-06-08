@@ -6,7 +6,7 @@ The current version of Udin is `0.6.0`, a major release that fixes a major issue
 **WARNING: THE 0.6.0 SERIES IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
 # Usage
-`./udin [g, r, c] <filename> [o] <output name>`
+`udin [g, r, c] <filename> [o] <output name>`
 
 For reference:
 

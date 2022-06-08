@@ -31,6 +31,7 @@ elif detectOs(Windows):
   createDir("C:\\.udincache")
 
 if paramCount() >= 2:
+  echo getCurrentDir()
   if detectOs(Linux):
     name = paramStr(2)
     specdir = getCurrentDir() & "/spec"
@@ -52,7 +53,6 @@ if paramCount() >= 2:
   elif len(nname) == 1:
     wdir = ""
     fname = nname[0]
-  echo fname
 else:
   info("Usage instructions:")
   echo "  udin [g, r, c] <filename> [o] <output name>"
@@ -158,6 +158,9 @@ if paramCount() >= 2:
           inc oldLen
       if paramCount() == 4:
         if paramStr(3) == "o" or commandLineParams()[2] == "o":
+          createDir("spec")
+          createDir("dist")
+          createDir("build")
           if detectOs(Linux):
             discard execCmd(fmt"pyinstaller --specpath {specdir} --distpath {distdir} --workpath {builddir} -F /tmp/udincache/{fname}.py --clean -n " & paramStr(4))
             discard execCmd("rm /tmp/udincache/*.py &> /dev/null")
@@ -175,15 +178,18 @@ if paramCount() >= 2:
             removeDir("dist")
             removeDir("spec")
       else:
+        createDir("spec")
+        createDir("dist")
+        createDir("build")
         if detectOs(Linux):
-          discard execCmd(fmt"pyinstaller --specpath {specdir} --distpath {distdir} --workpath {builddir} -F /tmp/udincache/{fname}.py --clean -n {name}")
+          discard execCmd(fmt"pyinstaller --specpath {specdir} --distpath {distdir} --workpath {builddir} -F /tmp/udincache/{fname}.py --clean -n {fname}")
           discard execCmd("rm /tmp/udincache/*.py &> /dev/null")
           discard execCmd("rm -rf ./build &> /dev/null")
           discard execCmd("mv ./dist/* . &> /dev/null")
           discard execCmd("rm -rf ./dist &> /dev/null")
           discard execCmd("rm -rf ./spec/ &> /dev/null")
         elif detectOs(Windows):
-          discard execCmd(fmt"pyinstaller --specpath {specdir} --distpath {distdir} --workpath {builddir} -F C:\.udincache\{fname}.py --clean -n {name}")
+          discard execCmd(fmt"pyinstaller --specpath {specdir} --distpath {distdir} --workpath {builddir} -F C:\.udincache\{fname}.py --clean -n {fname}")
           removeFile("C:\\.udincache\\" & name & ".py")
           for i in 0..len(toDel) - 1:
             removeFile("C:\\.udincache\\" & toDel[i] & "_udin.py")
