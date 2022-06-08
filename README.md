@@ -1,11 +1,9 @@
 # Udin
 Welcome to **Udin**!
 
-Udin used to be called Udin5, since this is the fifth iteration of the language. Now, it is just called Udin.
+The current version of Udin is `0.5.1`, a minor release that adds the global keyword and increment/decrement operators.
 
-The current version of Udin is `0.5.0`, a major release that removes static typing.
-
-**WARNING: THE 0.5.0 SERIES IS HIGHLY EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
+**WARNING: THE 0.5.0 SERIES IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
 # Usage
 `./udin [g, r, c] <filename> [o] <output name>`
@@ -33,11 +31,11 @@ Add better error handling.
 # Installation
 macOS is not officially supported.
 
-Install `nim`, `nimble`, `python3`, `mypy`, and `pip3`.
+Install `nim`, `nimble`, `python3`, and `pip3`.
 
 You need to have `pyinstaller`, `python3-devel`, and `gcc` (in the case of Windows, you just need `pyinstaller` and `mingw`) installed to compile code to a binary.
 
-Finally, run `nimble build` to build everything here, and run the generated binary.
+Finally, run `nimble build -d:release` to build everything here, and run the generated binary.
 
 # Submitting issues
 Please please PLEASE submit the code that you were trying to run when the issue occurred, it REALLY helps me when you take the time to do that. An expected result could be helpful to include as well.
