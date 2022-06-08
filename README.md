@@ -1,9 +1,9 @@
 # Udin
 Welcome to **Udin**!
 
-The current version of Udin is `0.5.2`, a minor release that allows the use of the double dot operator in lists.
+The current version of Udin is `0.6.0`, a major release that fixes a major issue.
 
-**WARNING: THE 0.5.0 SERIES IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
+**WARNING: THE 0.6.0 SERIES IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
 
 # Usage
 `./udin [g, r, c] <filename> [o] <output name>`
@@ -24,9 +24,6 @@ Documentation will be written eventually, but for now, check out the example fil
 Add __*more*__ custom functionality.
 
 Add better error handling.
-
-# Known Issues
-- You can't run anything if all the files aren't in the same directory as the command is being run.
 
 # Installation
 macOS is not officially supported.
