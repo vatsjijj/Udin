@@ -29,7 +29,10 @@ if detectOs(Linux):
 elif detectOs(Windows):
   createDir("C:\\.udincache")
 
-if paramCount() >= 2:
+if paramCount() == 1 and (paramStr(1) == "ver" or commandLineParams()[0] == "ver"):
+  info("Udin 0.6.1")
+  quit(0)
+elif paramCount() >= 2:
   if detectOs(Linux):
     name = paramStr(2)
     specdir = getCurrentDir() & "/spec"
