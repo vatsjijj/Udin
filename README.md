@@ -7,6 +7,12 @@ The current version of Udin is `0.6.0`, a major release that fixes a major issue
 
 **CONFIRMED WORKING ON WINDOWS. LAST CHECK: VER 0.6.0**
 
+# Fun Stuff
+
+The longest lived series of Udin were 0.1.x and 0.4.x, both going up to 0.1.5 and 0.4.5. Just a little fun fact.
+
+The longest lived bug in Udin was a compilation/scan bug, where nothing would work if you weren't in the same directory as your sources. Started in 0.1.0 and finally ended in 0.6.0. That's 23 releases until it was fixed.
+
 # Usage
 `udin [g, r, c] <filename> [o] <output name>`
 
