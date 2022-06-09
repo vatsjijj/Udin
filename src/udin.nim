@@ -31,7 +31,6 @@ elif detectOs(Windows):
   createDir("C:\\.udincache")
 
 if paramCount() >= 2:
-  echo getCurrentDir()
   if detectOs(Linux):
     name = paramStr(2)
     specdir = getCurrentDir() & "/spec"
