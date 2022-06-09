@@ -36,6 +36,10 @@ You need to have `pyinstaller`, `python3-devel`, and `gcc` (in the case of Windo
 
 Finally, run `nimble build -d:release` to build everything here, and run the generated binary.
 
+If you're on Linux, you can copy the binary to `~/.local/bin` or `/usr/bin`, somewhere like that, I trust you.
+
+If you're on Windows, the easiest thing to do would just be to add the build directory to you user PATH.
+
 ## Submitting issues
 Please please PLEASE submit the code that you were trying to run when the issue occurred, it REALLY helps me when you take the time to do that. An expected result could be helpful to include as well.
 
