@@ -11,6 +11,11 @@ Windows support is highly experimental and may constantly break, proceed with ca
 
 Linux binaries are built and tested on Fedora 36, and Windows binaries are built and tested on Windows 10.
 
+## Fun Stuff
+The longest lived series of Udin were 0.1.x and 0.4.x, both going up to 0.1.5 and 0.4.5. Just a little fun fact.
+
+The longest lived bug in Udin was a compilation/scan bug, where nothing would work if you weren't in the same directory as your sources. Started in 0.1.0 and finally ended in 0.6.0. That's 23 releases until it was fixed.
+
 ## Code Samples
 Hello World:
 ```kotlin
