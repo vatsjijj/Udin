@@ -3,7 +3,8 @@ Welcome to **Udin**!
 
 The current version of Udin is `0.6.0`, a major release that fixes a major issue.
 
-**WARNING: THE 0.6.0 SERIES IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK**
+**WARNING: UDIN IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK RELIABLY**
+**CONFIRMED WORKING ON WINDOWS. LAST CHECK: VER 0.6.0**
 
 # Usage
 `udin [g, r, c] <filename> [o] <output name>`
