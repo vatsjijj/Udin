@@ -14,7 +14,6 @@ import std/[sequtils, os, osproc, strutils, strformat, distros], scan, util
 
 var name: string
 var oldLen: int = 0
-var fullLst: string
 var specdir: string
 var distdir: string
 var builddir: string
@@ -81,9 +80,6 @@ if paramCount() >= 2:
               scan((readFile(toCompile[oldLen] & ".udin") & '\0').toSeq)
               writeFile(toCompile[oldLen] & "_udin.py", compile())
             inc oldLen
-        for i in 0..len(toCompile) - 1:
-          fullLst = fullLst & toCompile[i] & "_udin.py "
-        fullLst = fullLst & name & ".py"
     else:
       writeFile(fmt"{name}.py", compile())
       if len(toCompile) >= 1:
@@ -97,9 +93,6 @@ if paramCount() >= 2:
             scan((readFile(toCompile[oldLen] & ".udin") & '\0').toSeq)
             writeFile(toCompile[oldLen] & "_udin.py", compile())
           inc oldLen
-      for i in 0..len(toCompile) - 1:
-        fullLst = fullLst & toCompile[i] & "_udin.py "
-      fullLst = fullLst & name & ".py"
   if paramStr(1) == "r" or commandLineParams()[0] == "r":
     if detectOs(Linux):
       writeFile(fmt"/tmp/udincache/{fname}.py", compile())
