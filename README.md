@@ -1,7 +1,7 @@
 # Udin
 Welcome to **Udin**!
 
-The current version of Udin is `0.6.1`, a minor release that prevents you from using `def` (I needed this badly).
+The current version of Udin is `0.6.2`, a minor release that fixes another import bug.
 
 **WARNING: UDIN IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK RELIABLY**
 
