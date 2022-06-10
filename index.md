@@ -2,7 +2,7 @@ The Udin programming language is a language that compiles down to Python, for ea
 
 Udin's syntax is inspired by Kotlin, Rust, Nim, and a *little bit* of Python.
 
-The current version is 0.6.1.
+The current version is 0.6.2.
 
 ## Supported Systems
 Linux and Windows.
