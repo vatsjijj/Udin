@@ -74,7 +74,7 @@ if paramCount() >= 2:
         writeFile(paramStr(4) & ".py", compile())
         if len(toCompile) >= 1:
           while true:
-            line = 2
+            line = 1
             ip = 0
             var newLen = len(toCompile)
             if oldLen == newLen:
@@ -87,7 +87,7 @@ if paramCount() >= 2:
       writeFile(fmt"{name}.py", compile())
       if len(toCompile) >= 1:
         while true:
-          line = 2
+          line = 1
           ip = 0
           var newLen = len(toCompile)
           if oldLen == newLen:
@@ -103,7 +103,7 @@ if paramCount() >= 2:
       writeFile(fmt"C:\.udincache\{fname}.py", compile())
     if len(toCompile) >= 1:
       while true:
-        line = 2
+        line = 1
         ip = 0
         var newLen = len(toCompile)
         if oldLen == newLen:
@@ -138,7 +138,7 @@ if paramCount() >= 2:
         writeFile(fmt"C:\.udincache\{fname}.py", compile())
       if len(toCompile) >= 1:
         while true:
-          line = 2
+          line = 1
           ip = 0
           var newLen = len(toCompile)
           if oldLen == newLen:
