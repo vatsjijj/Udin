@@ -1,7 +1,7 @@
 # Udin
 Welcome to **Udin**!
 
-The current version of Udin is `0.6.3`, a minor release that adds more error handling.
+The current version of Udin is `0.6.4`, a minor release that fixes an annoying global bug.
 
 **WARNING: UDIN IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK RELIABLY**
 
