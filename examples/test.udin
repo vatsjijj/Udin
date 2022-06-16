@@ -1,5 +1,4 @@
-fun addTwo(a: Int, b: Int) :: Int {
+fun addTwo(a: Int, b: Int) :: Int =
   ret a + b
-}
 
 put(addTwo(7, 10))

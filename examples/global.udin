@@ -1,0 +1,10 @@
+global x = "awesome"
+
+fun test() =
+  x = "fantastic"
+
+put("Udin is " <> x)
+
+test()
+
+put("Udin is " <> x)

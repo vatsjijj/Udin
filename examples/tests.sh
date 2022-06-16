@@ -8,3 +8,4 @@ udin r import.udin
 udin r test.udin
 udin r quicksort.udin
 udin r dclass.udin
+udin r global.udin

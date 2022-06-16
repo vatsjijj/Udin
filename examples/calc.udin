@@ -1,0 +1,59 @@
+fun add() :: Int =
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a + b
+
+fun sub() :: Int =
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a - b
+
+fun mul() :: Int =
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a * b
+
+fun div() :: Float =
+  a: Float = Float(input("[a]> "))
+  b: Float = Float(input("[b]> "))
+  ret a / b
+
+fun fdiv() :: Int =
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a // b
+
+fun mod() :: Int =
+  a: Int = Int(input("[a]> "))
+  b: Int = Int(input("[b]> "))
+  ret a % b
+
+fun main() :: None =
+  put("Availible operators:")
+  put("add")
+  put("sub")
+  put("mul")
+  put("div")
+  put("fdiv")
+  put("mod")
+  loop:
+    uin: String = input("> ")
+    match uin:
+      "add" -> put(addt())
+      "sub" -> put(sub())
+      "mul" -> put(mul())
+      "div" -> put(div())
+      "fdiv" -> put(fdiv())
+      "mod" -> put(mod())
+      "ops" ->
+        put("Availible operators:")
+        put("add")
+        put("sub")
+        put("mul")
+        put("div")
+        put("fdiv")
+        put("mod")
+      _ -> put("Error: Not allowed.")
+
+nameMain:
+  main()

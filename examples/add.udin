@@ -1,14 +1,4 @@
-fun addTwo(a: Int, b: Int) :: Int {
+fun addTwo(a, b) =
   ret a + b
-}
 
-fun addThree(a: Int, b: Int, c: Int) :: Int {
-  ret a + b + c
-}
-
-x: Int = 7
-y: Int = 10
-z: Int = 9
-
-put(addTwo(x, y))
-put(addThree(x, y, z))
+put(addTwo(7, 10))

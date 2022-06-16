@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.6.4"
+version       = "0.7.0"
 author        = "Jordan"
 description   = "The Udin programming language."
 license       = "MIT"

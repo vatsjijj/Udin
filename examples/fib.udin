@@ -1,0 +1,15 @@
+from functools import cache
+
+@cache
+fun fib(n: Int) :: Int =
+  if n <= 1:
+    ret n
+  ret fib(n - 1) + fib(n - 2)
+
+fun main() :: None =
+  for i in 0..399:
+    put(i, fib(i))
+  put("Done")
+
+nameMain:
+  main()

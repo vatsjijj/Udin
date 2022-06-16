@@ -1,0 +1,9 @@
+fun m(arg: Int) :: String =
+  match arg:
+    0 -> ret "zero"
+    1 -> ret "one"
+    _ -> ret "none"
+
+loop:
+  uin: Int = Int(input("> "))
+  put(m(uin))

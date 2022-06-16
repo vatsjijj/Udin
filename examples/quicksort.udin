@@ -1,28 +1,21 @@
-fun qs(arr: List) :: List {
+fun qs(arr: List) :: List =
   less: List = []
   pivotList: List = []
   more: List = []
-  if len(arr) <= 1 {
+  if len(arr) <= 1:
     ret arr
-  }
-  else {
+  else:
     pivot = arr[0]
-    for i in arr {
-      if i < pivot {
+    for i in arr:
+      if i < pivot:
         less.append(i)
-      }
-      elif i > pivot {
+      elif i > pivot:
         more.append(i)
-      }
-      else {
+      else:
         pivotList.append(i)
-      }
-    }
     less = qs(less)
     more = qs(more)
     ret less + pivotList + more
-  }
-}
 
 a = [ 4, 65, 2,
       -31, 0, 99,

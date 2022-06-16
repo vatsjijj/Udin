@@ -1,6 +1,5 @@
-fun helloFun() {
+fun helloFun() =
   put("Hello, world! I'm in a function!")
-}
 
 put("Hello, world!")
 helloFun()

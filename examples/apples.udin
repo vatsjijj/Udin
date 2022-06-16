@@ -1,8 +1,8 @@
 apples = 20
 oranges = 15
 
-put("Number of apples: " + str(apples))
-put("Number of oranges: " + str(oranges))
+put("Number of apples: " <> String(apples))
+put("Number of oranges: " <> String(oranges))
 oranges = 0
-put("Number of apples: " + str(apples))
-put("Number of oranges: " + str(oranges))
+put("Number of apples: " <> String(apples))
+put("Number of oranges: " <> String(oranges))
