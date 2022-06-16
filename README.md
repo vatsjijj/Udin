@@ -5,7 +5,7 @@ The current version of Udin is `0.7.0`, a major release that makes whitespace si
 
 **WARNING: UDIN IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK RELIABLY**
 
-**CONFIRMED WORKING ON WINDOWS. LAST CHECK: VER 0.6.0**
+**LAST WINDOWS CHECK: VER 0.7.0**
 
 ## Usage
 `udin [g, r, c] <filename> [o] <output name>`
