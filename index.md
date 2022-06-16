@@ -2,7 +2,7 @@ The Udin programming language is a language that compiles down to Python, for ea
 
 Udin's syntax is inspired by Kotlin, Rust, Nim, and a *little bit* of Python.
 
-The current version is 0.6.4.
+The current version is 0.7.0.
 
 ## Supported Systems
 Linux and Windows.
@@ -19,9 +19,8 @@ The longest lived bug in Udin was a compilation/scan bug, where nothing would wo
 ## Code Samples
 Hello World:
 ```kotlin
-fun helloFun() :: None {
+fun helloFun() :: None =
   put("Hello, world! I'm in a function!")
-}
 
 put("Hello, world!")
 helloFun()
@@ -32,34 +31,27 @@ Fib (w/ memoization):
 from functools import cache
 
 @cache
-fun fib(n: Int) :: Int {
-  if n <= 1 {
+fun fib(n: Int) :: Int =
+  if n <= 1:
     ret n
-  }
   ret fib(n - 1) + fib(n - 2)
-}
 
-fun main() :: None {
-  for i in 0..399 {
+fun main() :: None =
+  for i in 0..399:
     put(i, fib(i))
-  }
   put("Done")
-}
 
-nameMain {
+nameMain:
   main()
-}
 ```
 
 Adding Numbers:
 ```kotlin
-fun addTwo(a: Int, b: Int) :: Int {
+fun addTwo(a: Int, b: Int) :: Int =
   ret a + b
-}
 
-fun addThree(a: Int, b: Int, c: Int) :: Int {
+fun addThree(a: Int, b: Int, c: Int) :: Int =
   ret a + b + c
-}
 
 x: Int = 7
 y: Int = 10
@@ -71,47 +63,37 @@ put(addThree(x, y, z))
 
 Matching and Loops:
 ```kotlin
-fun m(arg: Int) :: String {
-  match arg {
+fun m(arg: Int) :: String =
+  match arg:
     0 -> ret "zero"
     1 -> ret "one"
     _ -> ret "none"
-  }
-}
 
-loop {
+loop:
   uin: Int = Int(input("> "))
   put(m(uin))
-}
 ```
 
 Quicksort:
 ```kotlin
-fun qs(arr: List) :: List {
+fun qs(arr: List) :: List =
   less: List = []
   pivotList: List = []
   more: List = []
-  if len(arr) <= 1 {
+  if len(arr) <= 1:
     ret arr
-  }
-  else {
+  else:
     pivot = arr[0]
-    for i in arr {
-      if i < pivot {
+    for i in arr:
+      if i < pivot:
         less.append(i)
-      }
-      elif i > pivot {
+      elif i > pivot:
         more.append(i)
-      }
-      else {
+      else:
         pivotList.append(i)
-      }
-    }
     less = qs(less)
     more = qs(more)
     ret less + pivotList + more
-  }
-}
 
 a = [ 4, 65, 2,
       -31, 0, 99,
@@ -124,43 +106,37 @@ put(a)
 
 Calculator:
 ```kotlin
-fun addt() :: Int {
+fun add() :: Int =
   a: Int = Int(input("[a]> "))
   b: Int = Int(input("[b]> "))
   ret a + b
-}
 
-fun sub() :: Int {
+fun sub() :: Int =
   a: Int = Int(input("[a]> "))
   b: Int = Int(input("[b]> "))
   ret a - b
-}
 
-fun mul() :: Int {
+fun mul() :: Int =
   a: Int = Int(input("[a]> "))
   b: Int = Int(input("[b]> "))
   ret a * b
-}
 
-fun div() :: Float {
+fun div() :: Float =
   a: Float = Float(input("[a]> "))
   b: Float = Float(input("[b]> "))
   ret a / b
-}
 
-fun fdiv() :: Int {
+fun fdiv() :: Int =
   a: Int = Int(input("[a]> "))
   b: Int = Int(input("[b]> "))
   ret a // b
-}
 
-fun mod() :: Int {
+fun mod() :: Int =
   a: Int = Int(input("[a]> "))
   b: Int = Int(input("[b]> "))
   ret a % b
-}
 
-fun main() :: None {
+fun main() :: None =
   put("Availible operators:")
   put("add")
   put("sub")
@@ -168,16 +144,16 @@ fun main() :: None {
   put("div")
   put("fdiv")
   put("mod")
-  loop {
+  loop:
     uin: String = input("> ")
-    match uin {
+    match uin:
       "add" -> put(addt())
       "sub" -> put(sub())
       "mul" -> put(mul())
       "div" -> put(div())
       "fdiv" -> put(fdiv())
       "mod" -> put(mod())
-      "ops" -> {
+      "ops" ->
         put("Availible operators:")
         put("add")
         put("sub")
@@ -185,25 +161,19 @@ fun main() :: None {
         put("div")
         put("fdiv")
         put("mod")
-      }
       _ -> put("Error: Not allowed.")
-    }
-  }
-}
 
-nameMain {
+nameMain:
   main()
-}
 ```
 
 Dataclass:
 ```kotlin
-dataclass Employee {
+dataclass Employee =
   name: String
   id: String
   age: Int
   city: String
-}
 
 employeeOne = Employee("Bob", "bobd867", 27, "Columbus")
 
@@ -225,19 +195,17 @@ put(x)
 
 x = 0
 
-for i in 0..9 {
+for i in 0..9:
   put(x)
   ++x
-}
 ```
 
 Globals:
 ```kotlin
 global x = "awesome"
 
-fun test() {
+fun test() =
   x = "fantastic"
-}
 
 put("Udin is " <> x)
 
