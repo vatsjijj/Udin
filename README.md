@@ -1,4 +1,6 @@
 # Udin
+<img src="https://github.com/vatsjijj/Udin/blob/main/udin.png?raw=true" width="25%" height="25%">
+
 Welcome to **Udin**!
 
 The current version of Udin is `0.7.1`, a minor release that fixes some issues.
