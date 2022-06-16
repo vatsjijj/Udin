@@ -149,7 +149,7 @@ fun main() :: None =
   loop:
     uin: String = input("> ")
     match uin:
-      "add" -> put(addt())
+      "add" -> put(add())
       "sub" -> put(sub())
       "mul" -> put(mul())
       "div" -> put(div())
