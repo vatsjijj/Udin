@@ -1,3 +1,5 @@
+<img src="https://github.com/vatsjijj/Udin/blob/main/udin.png?raw=true" width="25%" height="25%">
+
 The Udin programming language is a language that compiles down to Python, for easy use with other Python libraries and such.
 
 Udin's syntax is inspired by [Kotlin](https://kotlinlang.org), [Rust](https://www.rust-lang.org), [Nim](https://nim-lang.org), and [Prowl](https://github.com/UberPyro/prowl).
