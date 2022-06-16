@@ -1,7 +1,7 @@
 # Udin
 Welcome to **Udin**!
 
-The current version of Udin is `0.7.0`, a major release that makes whitespace significant. Yeah, I know it might suck, but it looks better to pythonic eyes.
+The current version of Udin is `0.7.1`, a minor release that fixes some issues.
 
 **WARNING: UDIN IS EXPERIMENTAL ON WINDOWS AND MAY NOT WORK RELIABLY**
 
