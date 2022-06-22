@@ -25,7 +25,9 @@ For reference:
 Documentation will be written eventually, but for now, check out the example files to learn the language.
 
 ## Things to Do
-Add __*more*__ custom functionality.
+Change output language to take dependencies from six to three.
+
+Change syntax.
 
 Add better error handling.
 
