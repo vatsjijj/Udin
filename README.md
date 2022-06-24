@@ -1,3 +1,5 @@
+## THIS REPOSITORY IS DEPRECATED, EVERYTHING HAS BEEN MOVED [HERE](https://github.com/Nosonos-Language/nosonos)!
+
 # Udin
 <img src="https://github.com/vatsjijj/Udin/blob/main/udin.png?raw=true" width="25%" height="25%">
 
