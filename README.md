@@ -25,9 +25,7 @@ For reference:
 Documentation will be written eventually, but for now, check out the example files to learn the language.
 
 ## Things to Do
-Change output language to take dependencies from six to three.
-
-Change syntax.
+Change output language. Candidates are D and Nim.
 
 Add better error handling.
 
