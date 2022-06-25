@@ -1,3 +1,5 @@
+**Udin has been deprecated, it's now [here](https://nosonos-language.github.io/nosonos).**
+
 <img src="https://github.com/vatsjijj/Udin/blob/main/udin.png?raw=true" width="25%" height="25%">
 
 The Udin programming language is a language that compiles down to Python, for easy use with other Python libraries and such.
